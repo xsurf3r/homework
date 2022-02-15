@@ -1,0 +1,21 @@
+{
+    "Vards": "Vladlendik",
+    "Vecums": 1000,
+    "Dzivs": true,
+    "Nedzivs": false,
+    "Berni": [
+        "Rozenmaiden",
+        "Shrinemaiden"
+    ],
+    "Dzivnieki": null,
+    "Masinas": [
+        {
+            "Modelis": "Corolla levin",
+            "Gads": 1986
+        },
+        {
+            "Modelis": "Cybertruck",
+            "Gads": 2020
+        }
+    ]
+}
