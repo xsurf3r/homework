@@ -1,4 +1,4 @@
-class transportlidzekils():
+class Transportlidzekils():
     def __init__(self,modelis,krasa,motoraTilpums,atrumkarba):
         self.modelis = modelis
         self.krasa = krasa
@@ -11,5 +11,5 @@ class transportlidzekils():
         print(f"motora tilpums: {self.motoraTilpums}")
         print(f"atrumkarba: {self.atrumkarba}")
 
-auto = transportlidzekils("otlander","melna","10","manuāla")
-auto.dati()
+auto = Transportlidzekils("otlander","melna","10","manuāla")
+auto.dati() 

@@ -1,82 +1,84 @@
+#Dati, kurus ievadis:
+#Vards
+#Uzvards
+#Vecums
+#Tel. Nr.
+
+#Dati jasaglaba vardnica ({})
+
+#Savaktie dati jasaglaba faila 'ievaktieDati.json'
+
 import json
-
-#Vardnica
-
-vardnica = {
-    'Vards':'Artjoms',
-    'Izglitiba':'Videja',
-    'Vecums':16
-}
-
-#Parveidot Python uz JSON
-a = json.dumps(vardnica)
-
-print(a, type(a))
-
-#Parveidot JSON uz Python
-b = json.loads(a)
-
-print(b, type(b))
-
-print(json.dumps(['banans','mandarins']))
-
-#dict - object
-#list - array
-#tuple - array
-#str - string
-#int - number
-#float - number
-#true - true
-#false - false
-#none - null
-
-py_data = {
-    'Vards':'Vladlendik',
-    'Vecums':1000,
-    'Dzivs':True,
-    'Nedzivs':False,
-    'Berni':('Rozenmaiden','Shrinemaiden'),
-    'Dzivnieki':None,
-    'Masinas':[
-        {'Modelis':'Corolla levin','Gads':1986},
-        {'Modelis':'Cybertruck','Gads':2020}
-    ]
-}
-
-print(json.dumps(py_data, indent=4, separators=(',',':')))
-
-fails = open('jsonqwe.json','w',encoding='utf-8')
-json.dump(py_data,fails,indent=4, ensure_ascii=False)
-fails.close()
-
-fails = open('jsonqwe.json','r',encoding='utf-8')
-json_dati = json.load(fails)
-
-#vardnicas garums
-print(len(json_dati))
-
-#Visas atslegas
-print(json_dati.keys())
-
-#Visas vertibas
-print(json_dati.values())
-
-#Parbaudi, vai dota atslega ir vardnica un izvadi tas vertibu
-atslega = 'Dzivs'
-
-for key in json_dati:
-    if key == atslega:
-        print(json_dati[key])
-
-#Nodefinet funkciju, kura ka argumentus izmantos datnes nosaukumu un atslegas nosaukumu
-#jaizvada atslegas vertiba
-def funkcija(datnes_name,key_name):
-    for key in datnes_name.keys():
-        if key == key_name:
-            print(datnes_name[key_name])
-            return
+#varda parbaude
+while True:
+    vardss = input('ievadiet vardu: ')
+    if vardss.isdigit() == False:
+        if vardss.strip() == '':
+            print('ievadiet vardu atkartoti')
+            continue
         else:
             break
-    print(f'Nav atslegas')
+    else:
+        print('ievadiet vardu atkartoti')
+        continue
 
-funkcija(json_dati,'Vards')
+        
+#uzvarda parbaude
+while True:
+    uzvardss = input('ievadiet uzvardu: ')
+    if uzvardss.isdigit() == False:
+        if uzvardss.strip() == '':
+            print('ievadiet uzvardu atkartoti')
+            continue
+        else:
+            break
+    else:
+        print('ievadiet uzvardu atkartoti')
+        continue
+
+#vecuma parbaude
+while True:
+    vecumss = input('ievadiet vecumu: ')
+    if vecumss.isdigit():
+        break
+    else:
+        print('ievadiet vecumu atkartoti')
+        continue
+#telefona numura parbaude
+while True:
+    tell = input('ievadiet telefona numuru: ')
+    if tell.isdigit():
+        if len(tell) == 8:
+            break
+    else:
+        print('ievadiet telefona numuru atkartoti')
+        continue
+
+vardnica = {
+    "Uzvārds":uzvardss,
+    "Vecums":vecumss,
+    "Telefona numurs":tell
+}
+
+with open("ievaktieDati.json","r", encoding="utf-8") as fails:
+    json_data = json.load(fails)
+
+    ir_saraksta = True
+    for key in json_data.keys():
+        if key == vardss:
+            if not isinstance(json_data[vardss],list):
+                json_data[vardss] = [json_data[vardss]]
+            json_data[vardss].append(vardnica)
+            if_saraksta = True
+            print('key==vards')
+            break
+        else:
+            ir_saraksta = False
+
+    if not ir_saraksta:
+        print('navSaraksta')
+        json_data[vardss]=vardnica
+
+
+with open("ievaktieDati.json","w", encoding="utf-8") as fails:
+    json.dump(json_data,fails, indent = 4, ensure_ascii=False)
